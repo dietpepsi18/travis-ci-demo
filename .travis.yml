@@ -4,13 +4,22 @@ node_js:
 cache: npm
 install:
   - npm install
-script:
-  - npm test
-  - npm run build
 
-deploy:
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
-  local_dir: build
-  on:
-    branch: master
+jobs:
+  include:
+    - stage: test
+      script:
+        - npm test
+    - stage: build
+      script:
+        - npm run build
+# script:
+#   - npm test
+#   - npm run build
+
+# deploy:
+#   skip_cleanup: true
+#   github_token: $GITHUB_TOKEN
+#   local_dir: build
+#   on:
+#     branch: master
